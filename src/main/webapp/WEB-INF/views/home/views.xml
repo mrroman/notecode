@@ -9,4 +9,7 @@
 	<definition name="homeSignedIn" extends="default">
 		<put-attribute name="body" value="/WEB-INF/views/home/homeSignedIn.jsp"></put-attribute>
 	</definition>	
+	<definition name="hello" extends="default">
+		<put-attribute name="body" value="/WEB-INF/views/home/hello.jsp"></put-attribute>
+	</definition>	
 </tiles-definitions>
