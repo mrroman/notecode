@@ -4,15 +4,15 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <div class="hero-unit">
-	<div>
-		${daysBetween.daysBetween}
-	</div>
-	<f:form commandName="daysBetween" method="POST">
-		<t:field label="From" path="from">
-			<f:input path="from" type="date"/>
+	<f:form modelAttribute="repository" method="POST">
+		<t:field label="Name" path="name">
+			<f:input path="name"/>
 		</t:field>
-		<t:field label="To" path="to">
-			<f:input path="to" type="date"/>
+		<t:field label="Address" path="address">
+			<f:input path="address"/>
+		</t:field>
+		<t:field label="Care Email" path="careEmail">
+			<f:input path="careEmail" type="email"/>
 		</t:field>
 		<button type="submit" class="btn">Send</button>
 	</f:form>
