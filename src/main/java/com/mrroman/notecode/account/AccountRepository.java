@@ -1,11 +1,15 @@
 package com.mrroman.notecode.account;
 
-import javax.persistence.*;
-import javax.inject.Inject;
+import java.util.List;
 
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Repository
 @Transactional(readOnly = true)
@@ -34,5 +38,12 @@ public class AccountRepository {
 		}
 	}
 
-	
+	public List<Account> findAll() {
+		try {
+			return entityManager.createQuery("from Account a").getResultList();
+		} catch (PersistenceException e) {
+			return null;
+		}
+	}
+
 }

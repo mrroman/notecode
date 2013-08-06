@@ -3,10 +3,14 @@ package com.mrroman.notecode.vcs;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.URL;
+
+import com.mrroman.notecode.account.Account;
 
 @Entity
 public class Repository {
@@ -24,6 +28,9 @@ public class Repository {
 	
 	@Email
 	private String careEmail;
+	
+	@ManyToOne
+	private Account account;
 	
 	public Integer getId() {
 		return id;
@@ -57,4 +64,11 @@ public class Repository {
 		this.name = name;
 	}
 		
+	public Account getAccount() {
+		return account;
+	}
+	
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 }

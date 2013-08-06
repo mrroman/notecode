@@ -3,19 +3,26 @@ package com.mrroman.notecode.config;
 import java.util.List;
 
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.MethodParameter;
+import org.springframework.data.repository.support.DomainClassConverter;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.method.support.*;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.method.support.ModelAndViewContainer;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import org.springframework.web.servlet.view.tiles3.*;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
@@ -53,6 +60,11 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		TilesConfigurer configurer = new TilesConfigurer();
 		configurer.setDefinitions(new String[] {TILES, VIEWS});
 		return configurer;
+	}
+
+	@Bean
+	public DomainClassConverter<?> domainClassConverter() {
+		return new DomainClassConverter<FormattingConversionService>(mvcConversionService());
 	}
 	
 	@Override

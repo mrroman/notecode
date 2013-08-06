@@ -14,6 +14,11 @@
 		<t:field label="Care Email" path="careEmail">
 			<f:input path="careEmail" type="email"/>
 		</t:field>
+		<t:field label="Care" path="account">
+			<f:select path="account">
+				<f:options items="${accounts}" itemLabel="email" itemValue="id"/>
+			</f:select>
+		</t:field>
 		<button type="submit" class="btn">Send</button>
 	</f:form>
 </div>

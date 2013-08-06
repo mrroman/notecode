@@ -63,5 +63,5 @@ public class PersistenceConfig implements TransactionManagementConfigurer {
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
 		return new JpaTransactionManager();
 	}
-
+	
 }
